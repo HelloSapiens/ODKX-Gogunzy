@@ -1,4 +1,4 @@
-# Gogunzy
+# Gogunzy - ODK-X helper to support newer Android versions
 
 Gogunzy is a lightweight Go-based proxy server designed to sit in front of the ODK-X Sync Endpoint to transparently handle and decompress incoming `gzip`-encoded HTTP request bodies. This is especially useful when dealing with clients (like the ODK-X Android tools) on newer android devices (e.g Android 14) that send gzipped requests, which may not be natively supported or expected by the sync backend yet.
 
