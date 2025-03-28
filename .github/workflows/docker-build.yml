@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository_owner }}/${{ github.event.repository.name }}
 
 jobs:
   build-and-push:
@@ -24,8 +24,7 @@ jobs:
         with:
           fetch-depth: 0  # Required for GitVersion
 
-      - name: GitVersion
-        id: gitversion
+      - name: Setup GitVersion
         uses: gittools/actions/gitversion/setup@v1
         with:
           versionSpec: '5.x'
