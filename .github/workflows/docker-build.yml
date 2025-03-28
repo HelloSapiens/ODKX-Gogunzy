@@ -45,7 +45,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ github.repository_owner | lower }}/${{ github.event.repository.name | lower }}:${{ steps.version.outputs.semVer }}
-            ${{ env.REGISTRY }}/${{ github.repository_owner | lower }}/${{ github.event.repository.name | lower }}:latest
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}:${{ steps.version.outputs.semVer }}
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest
           labels: |
             org.opencontainers.image.version=${{ steps.version.outputs.semVer }}
