@@ -46,8 +46,8 @@ gogunzy:
 If you prefer to build the image yourself, you can clone this repository and build it locally:
 
 ```bash
-git clone https://github.com/HelloSapiens/ODKX-Gogunzy.git
-cd ODKX-Gogunzy
+git clone https://github.com/HelloSapiens/odkx-gogunzy.git
+cd odkx-gogunzy
 docker build -t gogunzy .
 ```
 
