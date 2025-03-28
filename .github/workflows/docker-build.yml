@@ -39,13 +39,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
 
+      - name: Prepare Docker metadata
+        id: docker_meta
+        run: |
+          echo "owner=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+          echo "repo=$(echo ${{ github.event.repository.name }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}:${{ steps.version.outputs.semVer }}
-            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest
+            ${{ env.REGISTRY }}/${{ steps.docker_meta.outputs.owner }}/${{ steps.docker_meta.outputs.repo }}:${{ steps.version.outputs.semVer }}
+            ${{ env.REGISTRY }}/${{ steps.docker_meta.outputs.owner }}/${{ steps.docker_meta.outputs.repo }}:latest
           labels: |
             org.opencontainers.image.version=${{ steps.version.outputs.semVer }}
