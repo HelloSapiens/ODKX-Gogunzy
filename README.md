@@ -19,16 +19,36 @@ In Docker environments, especially when using NGINX as a reverse proxy, gzipped 
 
 ## Deployment
 
+### Using Pre-built Docker Image (Recommended)
+
+The easiest way to deploy Gogunzy is to use the pre-built Docker image from GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/hellosapiens/odkx-gogunzy:latest
+```
+
+You can then reference this image in your Docker Compose file as shown below.
+
 ### Docker Compose Example
 
 ```yaml
 gogunzy:
-  image: gogunzy
+  image: ghcr.io/hellosapiens/odkx-gogunzy:latest  # Using the pre-built image from GitHub Container Registry
   networks:
     - sync-network
   ports:
     - "8000:8000"
   restart: unless-stopped
+```
+
+### Building from Source (Alternative)
+
+If you prefer to build the image yourself, you can clone this repository and build it locally:
+
+```bash
+git clone https://github.com/HelloSapiens/ODKX-Gogunzy.git
+cd ODKX-Gogunzy
+docker build -t gogunzy .
 ```
 
 ### NGINX Configuration
@@ -50,14 +70,6 @@ location /gogunzy-health {
 }
 ```
 
-## Building
-
-```bash
-docker build -t gogunzy .
-```
-
-
 ## License
 
 MIT
-
